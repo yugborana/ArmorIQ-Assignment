@@ -156,8 +156,7 @@ def get_policy_tool(query: str) -> list:
             results.append({"topic": k.upper(), "content": v})
     return results
 
-# --- 4. FastAPI Setup (The Web Layer) ---
-# We use standard Pydantic models for the HTTP API documentation
+# --- 4. FastAPI Setup ---
 
 class AccountCreate(BaseModel):
     name: str
@@ -178,10 +177,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan, title="Banking MCP Server")
 
-# Mount the MCP logic so AI agents can use it via SSE
 app.mount("/sse", mcp.http_app())
 
-# --- 5. FastAPI Endpoints (Wrappers around MCP Tools) ---
+# --- 5. FastAPI Endpoints ---
 
 @app.get("/")
 def home():
@@ -231,5 +229,6 @@ def search_policy(query: str):
     return {"results": results}
 
 if __name__ == "__main__":
-    print("🚀 Server running. Web API at port 8000. MCP SSE at /sse")
+    print("🚀 Server running. Web API at port 8000.")
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
