@@ -5,6 +5,7 @@ A robust, lightweight banking MCP Server built with **FastAPI** and **SQLite**.
 
 This project simulates core banking operations including atomic fund transfers, account management, and an AI-powered "Policy Search" feature that demonstrates Retrieval-Augmented Generation (RAG) concepts.
 
+Live Link - armoriq-assignment.onrender.com
 ---
 
 ## 🚀 Features
